@@ -1,8 +1,12 @@
+import os
+from dotenv import load_dotenv
 from flask import Flask, request, jsonify
 import openai
 
+load_dotenv()
+
 app = Flask(__name__)
-openai.api_key = "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"
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def load_extracted_texts(file_path):
     with open(file_path, "r") as f:
@@ -30,7 +34,7 @@ def chat():
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
             ],
-            max_tokens=150
+            max_tokens=300
         )
         answer = response.choices[0].message['content'].strip()
     except openai.error.RateLimitError:
