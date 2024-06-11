@@ -1,9 +1,7 @@
-from flask import Flask, request, jsonify
+import streamlit as st
 import openai
 
-app = Flask(__name__)
-openai.api_key = "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"
-
+# Load your extracted texts
 def load_extracted_texts(file_path):
     with open(file_path, "r") as f:
         texts = f.read()
@@ -11,14 +9,9 @@ def load_extracted_texts(file_path):
 
 extracted_texts = load_extracted_texts("/Users/nealshankar/custom-chatbot/extracted_texts.txt")
 
-@app.route('/')
-def home():
-    return "Custom Chatbot API. Use the /chat endpoint to interact with the chatbot."
+openai.api_key = "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"
 
-@app.route('/chat', methods=['POST'])
-def chat():
-    data = request.json
-    question = data.get('question', '')
+def get_response(question):
     context_length = 3500  # Adjust the context length as needed
     context = extracted_texts[:context_length]  # Use the first 3500 characters of the extracted texts for context
     prompt = f"Based on the following information from various PDF documents:\n\n{context}\n\nQuestion: {question}\nAnswer:"
@@ -30,7 +23,7 @@ def chat():
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
             ],
-            max_tokens=150
+            max_tokens=500  # Increase max_tokens to allow longer answers
         )
         answer = response.choices[0].message['content'].strip()
     except openai.error.RateLimitError:
@@ -40,7 +33,11 @@ def chat():
     except openai.error.OpenAIError as e:
         answer = f"An error occurred: {str(e)}"
     
-    return jsonify({"answer": answer})
+    return answer
 
-if __name__ == '__main__':
-    app.run(debug=True)
+st.title("Custom Chatbot")
+question = st.text_input("Enter your question:")
+
+if st.button("Get Answer"):
+    answer = get_response(question)
+    st.write("Answer:", answer)
