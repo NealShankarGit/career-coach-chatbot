@@ -1,19 +1,17 @@
-import os
-from dotenv import load_dotenv
 from flask import Flask, request, jsonify
 import openai
+from openai import OpenAI
 
-load_dotenv()
+client = OpenAI(api_key="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")
 
 app = Flask(__name__)
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def load_extracted_texts(file_path):
     with open(file_path, "r") as f:
         texts = f.read()
     return texts
 
-extracted_texts = load_extracted_texts("/Users/nealshankar/custom-chatbot/extracted_texts.txt")
+extracted_texts = load_extracted_texts("extracted_texts.txt")
 
 @app.route('/')
 def home():
@@ -23,27 +21,25 @@ def home():
 def chat():
     data = request.json
     question = data.get('question', '')
-    context_length = 3500  # Adjust the context length as needed
-    context = extracted_texts[:context_length]  # Use the first 3500 characters of the extracted texts for context
+    context_length = 3500
+    context = extracted_texts[:context_length]
     prompt = f"Based on the following information from various PDF documents:\n\n{context}\n\nQuestion: {question}\nAnswer:"
-    
+
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": prompt}
-            ],
-            max_tokens=300
-        )
-        answer = response.choices[0].message['content'].strip()
-    except openai.error.RateLimitError:
+        response = client.chat.completions.create(model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt}
+        ],
+        max_tokens=150)
+        answer = response.choices[0].message.content.strip()
+    except openai.RateLimitError:
         answer = "Rate limit exceeded. Please try again later."
-    except openai.error.AuthenticationError:
+    except openai.AuthenticationError:
         answer = "Authentication error. Please check your API key."
-    except openai.error.OpenAIError as e:
+    except openai.OpenAIError as e:
         answer = f"An error occurred: {str(e)}"
-    
+
     return jsonify({"answer": answer})
 
 if __name__ == '__main__':
