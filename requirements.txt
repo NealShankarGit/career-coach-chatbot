@@ -5,3 +5,9 @@ itsdangerous==2.2.0
 Jinja2==3.1.4
 MarkupSafe==2.1.5
 Werkzeug==3.0.3
+openai==0.27.2
+langchain==0.0.110
+faiss-cpu==1.7.2
+streamlit==1.23.1
+python-dotenv==1.0.0
+
