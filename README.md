@@ -1,12 +1,11 @@
-# Custom Chatbot
+# Career Coach Chatbot
 
-This project focuses on developing a personalized chatbot framework where users can create their own chatbots using custom data. The repository includes two example chatbots: the AI Career Coach and the NSigma chatbot. These examples demonstrate the capabilities and customization options of the framework.
+This project focuses on developing a personalized chatbot framework designed to provide career guidance for Computer Science students entering the job market. The Career Coach Chatbot leverages advanced AI to offer personalized advice, career development tips, and interview preparation assistance.
 
 ## Features
-- **Customizable Chatbots**: Users can create their own chatbots tailored to specific needs using custom data.
+- **Customizable Chatbots**: Tailored specifically to provide career guidance for Computer Science students.
 - **AI Integration**: Utilizes ChatGPT for intelligent conversation and responses.
-- **Framework Examples**: Includes an AI Career Coach for career development advice and an NSigma chatbot for music-related interactions.
-- **Flask-based Application**: Built using Flask, making it easy to deploy and extend.
+- **Streamlit-based Application**: Built using Streamlit, making it easy to deploy and extend.
 
 ## Getting Started
 
@@ -34,18 +33,18 @@ This project focuses on developing a personalized chatbot framework where users 
 
 4. **Run the Application**:
     ```bash
-    python run.py
+    streamlit run app.py
     ```
 
 ## Project Structure
 - **app/**: Contains the main application code.
-    - **templates/**: HTML templates for the web application.
-    - **static/**: Static files (CSS, JavaScript, images).
-    - **\_\_init\_\_.py**: Initializes the Flask application.
-    - **routes.py**: Defines the routes and logic for the web application.
-- **run.py**: Entry point for running the Flask application.
+    - **templates/**: HTML templates for the web application. (If still used, otherwise remove)
+    - **static/**: Static files (CSS, JavaScript, images). (If still used, otherwise remove)
+    - **\_\_init\_\_.py**: Initializes the Flask application. (If still used, otherwise remove)
+    - **routes.py**: Defines the routes and logic for the web application. (If still used, otherwise remove)
+- **app.py**: Entry point for running the Streamlit application.
+- **extract_texts.py**: Script to extract text from PDFs into a CSV file.
 - **requirements.txt**: Lists the Python dependencies for the project.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
