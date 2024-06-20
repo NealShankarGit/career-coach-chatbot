@@ -36,15 +36,50 @@ This project focuses on developing a personalized chatbot framework designed to 
     streamlit run app.py
     ```
 
+
+### Using Custom Data
+To use your own PDF files for extracting text and providing custom data to the chatbot:
+
+1. **Place Your PDFs**:
+   Place your PDF files in a directory of your choice on your system.
+
+2. **Update File Path**:  
+   Open the `extract_texts.py` script and update the file path to point to your directory containing the PDFs. For example:
+   
+   import os
+   from langchain.document_loaders import PyPDFLoader
+
+   ### Update this line with your PDF directory
+   pdf_directory = '/path/to/your/pdf/directory'
+
+3. **Run the Script**:  
+   Extract the texts from your PDFs by running the `extract_texts.py` script:
+   
+   python extract_texts.py
+   
+   This will create a CSV file with the extracted text data, which the chatbot will use.
+
 ## Project Structure
-- **app/**: Contains the main application code.
-    - **templates/**: HTML templates for the web application. (If still used, otherwise remove)
-    - **static/**: Static files (CSS, JavaScript, images). (If still used, otherwise remove)
-    - **\_\_init\_\_.py**: Initializes the Flask application. (If still used, otherwise remove)
-    - **routes.py**: Defines the routes and logic for the web application. (If still used, otherwise remove)
+
+LICENSE  
+README.md  
+app.py  
+bfg.jar  
+create_env_file.py  
+extract_texts.py  
+extracted_texts.txt  
+requirements.txt  
+venv/
+
+- **LICENSE**: License for the project.
+- **README.md**: This file.
 - **app.py**: Entry point for running the Streamlit application.
+- **bfg.jar**: Tool for removing large or sensitive files from Git history.
+- **create_env_file.py**: Script to create a `.env` file for environment variables.
 - **extract_texts.py**: Script to extract text from PDFs into a CSV file.
+- **extracted_texts.txt**: Sample text file used for testing.
 - **requirements.txt**: Lists the Python dependencies for the project.
+- **venv/**: Virtual environment directory (not to be committed to Git).
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
