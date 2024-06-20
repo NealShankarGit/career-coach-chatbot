@@ -62,7 +62,7 @@ def get_answer(question):
     
     return answer
 
-st.title("Custom Chatbot")
+st.title("Career Coach Chatbot")
 question = st.text_input("Enter your question:")
 if st.button("Get Answer"):
     if question:
