@@ -17,3 +17,5 @@ __pycache__/
 .DS_Store
 
 .env
+create_env_file.py
+create_env_file.py
