@@ -31,33 +31,39 @@ This project focuses on developing a personalized chatbot framework designed to 
     pip install -r requirements.txt
     ```
 
-4. **Run the Application**:
+4. **Configure Environment Variables**:
+    Create a `.env` file in the root directory of the project and add your OpenAI API key:
+    ```plaintext
+    OPENAI_API_KEY=your_openai_api_key_here
+    ```
+
+5. **Run the Application**:
     ```bash
     streamlit run app.py
     ```
-
 
 ### Using Custom Data
 To use your own PDF files for extracting text and providing custom data to the chatbot:
 
 1. **Place Your PDFs**:
-   Place your PDF files in a directory of your choice on your system.
+    Place your PDF files in a directory of your choice on your system.
 
 2. **Update File Path**:  
-   Open the `extract_texts.py` script and update the file path to point to your directory containing the PDFs. For example:
-   
-   import os
-   from langchain.document_loaders import PyPDFLoader
+    Open the `extract_texts.py` script and update the file path to point to your directory containing the PDFs. For example:
+    ```python
+    import os
+    from langchain.document_loaders import PyPDFLoader
 
-   ### Update this line with your PDF directory
-   pdf_directory = '/path/to/your/pdf/directory'
+    # Update this line with your PDF directory
+    pdf_directory = '/path/to/your/pdf/directory'
+    ```
 
 3. **Run the Script**:  
-   Extract the texts from your PDFs by running the `extract_texts.py` script:
-   
-   python extract_texts.py
-   
-   This will create a CSV file with the extracted text data, which the chatbot will use.
+    Extract the texts from your PDFs by running the `extract_texts.py` script:
+    ```bash
+    python extract_texts.py
+    ```
+    This will create a CSV file with the extracted text data, which the chatbot will use.
 
 ## Project Structure
 
