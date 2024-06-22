@@ -16,8 +16,8 @@ This project focuses on developing a personalized chatbot framework designed to 
 ### Installation
 1. **Clone the Repository**:
     ```bash
-    git clone git@github.com:NealShankarGit/custom-chatbot.git
-    cd custom-chatbot
+    git clone git@github.com:NealShankarGit/career-coach-chatbot.git
+    cd career-coach-chatbot
     ```
 
 2. **Create and Activate Virtual Environment**:
